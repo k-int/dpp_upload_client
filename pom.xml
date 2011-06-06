@@ -12,16 +12,6 @@
 
     <repositories>
       <repository>
-        <id>swinglabs-releases</id>
-        <url>http://oss.sonatype.org/content/repositories/swinglabs-releases/</url>
-        <releases>
-          <enabled>true</enabled>
-        </releases>
-        <snapshots>
-          <enabled>false</enabled>
-        </snapshots>
-      </repository>
-      <repository>
         <id>codehaus-release</id>
         <name>Codehaus</name>
         <url>http://repository.codehaus.org</url>
@@ -30,6 +20,10 @@
         <id>maven.org</id>
         <name>maven.org</name>
         <url>http://repo1.maven.org/maven2</url>
+      </repository>
+      <repository>
+        <id>swinglabs-releases</id>
+        <url>http://oss.sonatype.org/content/repositories/swinglabs-releases/</url>
       </repository>
     </repositories>
 
@@ -40,8 +34,9 @@
         -->
         <dependency> <groupId>junit</groupId> <artifactId>junit</artifactId> <version>3.8.1</version> <scope>test</scope> </dependency>
         <dependency> <groupId>org.codehaus.groovy</groupId> <artifactId>groovy-all</artifactId> <version>1.8.0</version> <scope>compile</scope> </dependency> 
+      
         <!--
-        <dependency> <groupId>org.codehaus.griffon</groupId> <artifactId>swingxbuilder</artifactId> <version>0.1.8.1</version> </dependency> 
+        <dependency> <groupId>org.codehaus.griffon</groupId> <artifactId>swingxbuilder</artifactId> <version>0.1.8.1</version> <scope>compile</scope> </dependency> 
         -->
     </dependencies>
 
