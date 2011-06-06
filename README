@@ -1,0 +1,11 @@
+Build using 
+
+
+mvn clean assembly:assembly
+
+
+Run using 
+
+
+java -classpath ./target/UploadClient-1.0-SNAPSHOT-jar-with-dependencies.jar com.k_int.aggregator.Upload
+
