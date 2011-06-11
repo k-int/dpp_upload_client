@@ -27,28 +27,23 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
 
     
 
-    panel(constraints: CENTER, border:emptyBorder(12), layout:new MigLayout('fill',"[][growx]","")) {
+    panel(constraints: CENTER, border:emptyBorder(12), layout:new MigLayout('fill',"[][grow]")) {
       label(text:"DPP Username")
       textField(id:'DPPUserName',  // text: bind{model.fieldname},
-                columns:20,
                 editable:true,
-                constraints:"wrap")
+                constraints:"growx, wrap")
       label(text:"DPP Password")
       textField(id:'DPPUserName',  // text: bind{model.fieldname},
-                columns:20,
                 editable:true,
-                constraints:"wrap")
+                constraints:"growx, wrap")
       label(text:"Authority")
       textField(id:'DPPUserName',  // text: bind{model.fieldname},
-                columns:20,
+                // columns:20,
                 editable:true,
-                constraints:"wrap")
-
-    scrollPane(constraints:"grow", border:emptyBorder(12), layout:new MigLayout('fill',"[min!][pref!]","")) {
-        scrollPane(constraints:"span") {
-          //table = table {
-          //}
-        }
+                constraints:"growx, wrap")
+      scrollPane(constraints:"grow, push, span") {
+        //table = table {
+        //}
       }
     }
   }
