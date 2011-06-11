@@ -3,6 +3,7 @@ package dppupload
 import java.awt.Color
 import org.jdesktop.swingx.painter.GlossPainter
 import java.awt.BorderLayout
+import net.miginfocom.swing.MigLayout
 
 gloss = glossPainter(paint: new Color(1f, 1f, 1f, 0.2f), position: GlossPainter.GlossPosition.TOP)
 stripes = pinstripePainter(paint: new Color(1f, 1f, 1f, 0.17f), spacing: 5.0)
@@ -15,20 +16,24 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
             imageIcon('/griffon-icon-32x32.png').image,
             imageIcon('/griffon-icon-16x16.png').image]) {
     borderLayout()
-    jxheader(constraints: BorderLayout.NORTH, title: "SwingXBuilder Example",
-        description: "A brief example of SwingXBuilder in action",
-        titleForeground: Color.WHITE,
-        descriptionForeground: Color.WHITE,
-        icon: imageIcon("/griffon-icon-48x48.png"),
-        preferredSize: [480,80],
-        backgroundPainter: compound)
-    jxtaskPaneContainer(constraints: CENTER) {
-      jxtaskPane(title: "Task group 1") {
-        jxlabel("Action 1")
-      }
-      jxtaskPane(title: "Task group 2") {
-        label("Action 2")
-      }
+
+    jxheader(constraints: BorderLayout.NORTH, title: "Data Provider Portal Simple Upload Utility",
+             description: "Data Provider Portal - Simple Upload Utility",
+             titleForeground: Color.WHITE,
+             descriptionForeground: Color.WHITE,
+             // icon: imageIcon("/griffon-icon-48x48.png"),
+             preferredSize: [480,80],
+             backgroundPainter: compound)
+
+    panel(constraints: CENTER, border:emptyBorder(12), layout:new MigLayout('fill')) {
+      label(text:"DPP Username")
+      textField(id:'DPPUserName',  // text: bind{model.fieldname},
+                columns:20,
+                editable:true,
+                constraints:"wrap")
+      label(text:"DPP Password", constraints:"wrap")
+      label(text:"Authority", constraints:"wrap")
+      
     }
   }
 
