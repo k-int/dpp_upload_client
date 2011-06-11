@@ -4,12 +4,25 @@ import java.awt.Color
 import org.jdesktop.swingx.painter.GlossPainter
 import java.awt.BorderLayout
 import net.miginfocom.swing.MigLayout
+import javax.swing.filechooser.FileFilter
+import javax.swing.JFileChooser
 
 gloss = glossPainter(paint: new Color(1f, 1f, 1f, 0.2f), position: GlossPainter.GlossPosition.TOP)
 stripes = pinstripePainter(paint: new Color(1f, 1f, 1f, 0.17f), spacing: 5.0)
 matte = mattePainter(fillPaint: new Color(51, 51, 51))
 compound = compoundPainter(painters: [matte, stripes, gloss])
-  
+
+// Some of this taken from http://griffon.codehaus.org/FileViewer  
+openAction = action(closure: controller.selectBaseDir, name:"Select...")
+
+baseDirDialog  = fileChooser(dialogTitle:"Choose an excel file", 
+                             id:"openExcelDialog", 
+                             fileSelectionMode : JFileChooser.FILES_ONLY, 
+                             //the file filter must show also directories, in order to be able to look into them
+                             fileFilter: [getDescription: {-> "*.xls"}, accept:{file-> file ==~ /.*?\.xls/ || file.isDirectory() }] as FileFilter) {
+}
+
+
 application(title: 'swingx-test', pack: true, locationByPlatform: true,
             iconImage: imageIcon('/griffon-icon-48x48.png').image,
             iconImages: [imageIcon('/griffon-icon-48x48.png').image,
@@ -32,7 +45,7 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
       textField(id:'BaseDir',  text: bind{model.baseDir},
                 editable:false,
                 constraints:"split 2, growx")
-      button(constraints:"wrap",text:"select..")
+      button(constraints:"wrap",action:openAction)
       label(text:"DPP Username")
       textField(id:'DPPUserName',  text: bind{model.dppUser},
                 editable:true,
