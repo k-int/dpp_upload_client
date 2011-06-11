@@ -28,16 +28,21 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
     
 
     panel(constraints: CENTER, border:emptyBorder(12), layout:new MigLayout('fill',"[][grow]")) {
+      label(text:"Base Directory")
+      textField(id:'BaseDir',  text: bind{model.baseDir},
+                editable:false,
+                constraints:"split 2, growx")
+      button(constraints:"wrap",text:"select..")
       label(text:"DPP Username")
-      textField(id:'DPPUserName',  // text: bind{model.fieldname},
+      textField(id:'DPPUserName',  text: bind{model.dppUser},
                 editable:true,
                 constraints:"growx, wrap")
       label(text:"DPP Password")
-      textField(id:'DPPUserName',  // text: bind{model.fieldname},
+      textField(id:'DPPPassword',  text: bind{model.dppPass},
                 editable:true,
                 constraints:"growx, wrap")
       label(text:"Authority")
-      textField(id:'DPPUserName',  // text: bind{model.fieldname},
+      textField(id:'DPPAuth',  text: bind{model.dppAuthority},
                 // columns:20,
                 editable:true,
                 constraints:"growx, wrap")
