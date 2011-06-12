@@ -15,11 +15,11 @@ compound = compoundPainter(painters: [matte, stripes, gloss])
 // Some of this taken from http://griffon.codehaus.org/FileViewer  
 openAction = action(closure: controller.selectBaseDir, name:"Select...")
 
-baseDirDialog  = fileChooser(dialogTitle:"Choose an excel file", 
-                             id:"openExcelDialog", 
-                             fileSelectionMode : JFileChooser.FILES_ONLY, 
+baseDirDialog  = fileChooser(dialogTitle:"Choose a source directory", 
+                             id:"selectSourceDirectory", 
+                             fileSelectionMode : JFileChooser.DIRECTORIES_ONLY) {
                              //the file filter must show also directories, in order to be able to look into them
-                             fileFilter: [getDescription: {-> "*.xls"}, accept:{file-> file ==~ /.*?\.xls/ || file.isDirectory() }] as FileFilter) {
+                             //fileFilter: [getDescription: {-> "*.xls"}, accept:{file-> file ==~ /.*?\.xls/ || file.isDirectory() }] as FileFilter) {
 }
 
 
@@ -59,10 +59,28 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
                 // columns:20,
                 editable:true,
                 constraints:"growx, wrap")
-      scrollPane(constraints:"grow, push, span") {
-        //table = table {
-        //}
+
+      sp = splitPane(constraints:"grow, push, span") {
+        scrollPane() {
+          table {
+            tableModel () { //list : data
+              propertyColumn(header:'Resource', propertyName:'resource')
+              propertyColumn(header:'Status', propertyName:'status')
+            }
+          }
+        }
+
+        tabbedPane() {
+          panel(name:'Resource') {
+            label('The Resouce')
+          }
+          panel(name:'Response Detail') {
+            label('The Response')
+          }
+        }
       }
+
+      sp.dividerLocation=200;
     }
   }
 

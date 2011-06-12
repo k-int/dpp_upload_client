@@ -13,6 +13,7 @@ class DppuploadController {
     def selectBaseDir = { evt = null ->
       def fc = view.baseDirDialog
       if(fc.showOpenDialog() != JFileChooser.APPROVE_OPTION) return //user cancelled
+        println "Select ${fc.selectedFile} as base directory"
         model.baseDir = fc.selectedFile
     }
 
