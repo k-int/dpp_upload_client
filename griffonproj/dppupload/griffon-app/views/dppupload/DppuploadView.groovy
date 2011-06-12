@@ -7,13 +7,14 @@ import net.miginfocom.swing.MigLayout
 import javax.swing.filechooser.FileFilter
 import javax.swing.JFileChooser
 
+
 gloss = glossPainter(paint: new Color(1f, 1f, 1f, 0.2f), position: GlossPainter.GlossPosition.TOP)
 stripes = pinstripePainter(paint: new Color(1f, 1f, 1f, 0.17f), spacing: 5.0)
 matte = mattePainter(fillPaint: new Color(51, 51, 51))
 compound = compoundPainter(painters: [matte, stripes, gloss])
 
 // Some of this taken from http://griffon.codehaus.org/FileViewer  
-openAction = action(closure: controller.selectBaseDir, name:"Select...")
+openAction = action(closure: controller.selectBaseDir, name:"Choose...")
 startAction = action(closure: controller.start, name:"Start")
 stopAction = action(closure: controller.stop, name:"Stop")
 
@@ -69,7 +70,7 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
       sp = splitPane(constraints:"grow, push, span") {
         scrollPane() {
           table {
-            tableModel (list:model.resources) {
+            tableModel () { // rowsModel: bind(model.resources)) { // list: bind(model.resources)) {
               propertyColumn(header:'Resource', propertyName:'resource')
               propertyColumn(header:'Status', propertyName:'status')
             }

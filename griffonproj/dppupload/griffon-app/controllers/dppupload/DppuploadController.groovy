@@ -7,6 +7,7 @@ class DppuploadController {
     // these will be injected by Griffon
     def model
     def view
+    def running = false;
 
 
 
@@ -19,6 +20,7 @@ class DppuploadController {
 
     def start = {
       println "Start"
+      running = true;
       if ( ( model.baseDir != null ) && ( model.baseDir.length() > 0 ) ) {
         File dir = new File(model.baseDir)
         if ( dir.exists() && dir.isDirectory() ) {
@@ -29,13 +31,26 @@ class DppuploadController {
     }
 
     def process(dir) {
-      dir.listFiles().each { file ->
+      // dir.listFiles().each { file ->
+      for ( file in dir.listFiles() ) {
         println "Process ${file}"
+        if ( file.isDirectory() ) {
+          // Recurse
+          process(file)
+        }
+        else {
+          // See if the file can be parsed as XML. If so, it's a candidate for upload
+          model.resources.add([resource:"${file}", status:"Not processed"])
+        }
+
+        if ( ! running )
+          break;
       }
     }
 
     def stop = {
       println "Stop"
+      running = false;
     }
 
     // void mvcGroupInit(Map args) {
