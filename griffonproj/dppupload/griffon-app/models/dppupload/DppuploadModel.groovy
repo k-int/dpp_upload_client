@@ -7,4 +7,5 @@ class DppuploadModel {
    @Bindable String dppUser
    @Bindable String dppPass
    @Bindable String dppAuthority
+   @Bindable List resources = new ArrayList()
 }

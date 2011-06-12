@@ -14,6 +14,8 @@ compound = compoundPainter(painters: [matte, stripes, gloss])
 
 // Some of this taken from http://griffon.codehaus.org/FileViewer  
 openAction = action(closure: controller.selectBaseDir, name:"Select...")
+startAction = action(closure: controller.start, name:"Start")
+stopAction = action(closure: controller.stop, name:"Stop")
 
 baseDirDialog  = fileChooser(dialogTitle:"Choose a source directory", 
                              id:"selectSourceDirectory", 
@@ -60,14 +62,14 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
                 editable:true,
                 constraints:"growx, wrap")
       panel(constraints:"span, wrap") {
-        button("Start")
-        button("Stop")
+        button(action:startAction)
+        button(action:stopAction)
       }
 
       sp = splitPane(constraints:"grow, push, span") {
         scrollPane() {
           table {
-            tableModel () { //list : data
+            tableModel (list:model.resources) {
               propertyColumn(header:'Resource', propertyName:'resource')
               propertyColumn(header:'Status', propertyName:'status')
             }

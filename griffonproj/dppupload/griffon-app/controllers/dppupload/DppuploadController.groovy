@@ -17,6 +17,27 @@ class DppuploadController {
         model.baseDir = fc.selectedFile
     }
 
+    def start = {
+      println "Start"
+      if ( ( model.baseDir != null ) && ( model.baseDir.length() > 0 ) ) {
+        File dir = new File(model.baseDir)
+        if ( dir.exists() && dir.isDirectory() ) {
+          println "Cool, ${model.baseDir} exists and is a directory...."
+          process(dir)
+        }
+      }
+    }
+
+    def process(dir) {
+      dir.listFiles().each { file ->
+        println "Process ${file}"
+      }
+    }
+
+    def stop = {
+      println "Stop"
+    }
+
     // void mvcGroupInit(Map args) {
     //    // this method is called after model and view are injected
     // }
