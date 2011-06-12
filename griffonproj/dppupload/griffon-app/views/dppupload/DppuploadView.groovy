@@ -59,6 +59,10 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
                 // columns:20,
                 editable:true,
                 constraints:"growx, wrap")
+      panel(constraints:"span, wrap") {
+        button("Start")
+        button("Stop")
+      }
 
       sp = splitPane(constraints:"grow, push, span") {
         scrollPane() {
