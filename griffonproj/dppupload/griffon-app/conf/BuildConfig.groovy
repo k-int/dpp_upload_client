@@ -25,11 +25,13 @@ environments {
         signingkey {
             params {
                 sigfile = 'GRIFFON'
-                keystore = 'CHANGE ME'
-                alias = 'CHANGE ME'
+                keystore = '/home/ibbo/.keystore'
+                alias = 'GriffonKey'
                 // NOTE: for production keys it is more secure to rely on key prompting
                 // no value means we will prompt //storepass = 'BadStorePassword'
                 // no value means we will prompt //keypass   = 'BadKeyPassword'
+                storepass = 'testtest'
+                keypass = 'testtest'
                 lazy = false // sign, regardless of existing signatures
             }
         }
