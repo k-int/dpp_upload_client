@@ -9,8 +9,6 @@ class DppuploadController {
     def view
     def running = false;
 
-
-
     def selectBaseDir = { evt = null ->
       def fc = view.baseDirDialog
       if(fc.showOpenDialog() != JFileChooser.APPROVE_OPTION) return //user cancelled
@@ -41,6 +39,7 @@ class DppuploadController {
         else {
           // See if the file can be parsed as XML. If so, it's a candidate for upload
           model.resources.add([resource:"${file}", status:"Not processed"])
+          view.tm.fireTableRowsInserted(model.resources.size()-1,model.resources.size()-1)
         }
 
         if ( ! running )

@@ -25,6 +25,12 @@ baseDirDialog  = fileChooser(dialogTitle:"Choose a source directory",
                              //fileFilter: [getDescription: {-> "*.xls"}, accept:{file-> file ==~ /.*?\.xls/ || file.isDirectory() }] as FileFilter) {
 }
 
+tm = tableModel (list:model.resources) { // rowsModel: bind(model.resources)) { // list: bind(model.resources)) {
+  propertyColumn(header:'Resource', propertyName:'resource')
+  propertyColumn(header:'Status', propertyName:'status')
+}
+
+
 
 application(title: 'swingx-test', pack: true, locationByPlatform: true,
             iconImage: imageIcon('/griffon-icon-48x48.png').image,
@@ -69,11 +75,11 @@ application(title: 'swingx-test', pack: true, locationByPlatform: true,
 
       sp = splitPane(constraints:"grow, push, span") {
         scrollPane() {
-          table {
-            tableModel () { // rowsModel: bind(model.resources)) { // list: bind(model.resources)) {
-              propertyColumn(header:'Resource', propertyName:'resource')
-              propertyColumn(header:'Status', propertyName:'status')
-            }
+          table (model:tm) {
+          //  tableModel (model.resources) { // rowsModel: bind(model.resources)) { // list: bind(model.resources)) {
+          //    propertyColumn(header:'Resource', propertyName:'resource')
+          //    propertyColumn(header:'Status', propertyName:'status')
+          //  }
           }
         }
 
