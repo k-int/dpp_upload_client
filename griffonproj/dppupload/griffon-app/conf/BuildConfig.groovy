@@ -116,6 +116,8 @@ griffon.project.dependency.resolution = {
         // from public Maven repositories
         mavenLocal()
         mavenCentral()
+
+        mavenRepo "http://repo1.maven.org/maven2"
         //mavenRepo "http://snapshots.repository.codehaus.org"
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
@@ -124,6 +126,10 @@ griffon.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
         compile 'org.apache.httpcomponents:httpmime:4.0.3'
+        // compile group:'net.sf.json-lib', name:'json-lib', version:'2.3', classifier:'jdk15'
+        compile 'net.sf.json-lib:json-lib:2.3:jdk15'
+        // compile 'net.sf.json-lib:json-lib:2.4'
+        // compile 'net.sf.json-lib:json-lib:2.3-jdk15'
         // runtime 'mysql:mysql-connector-java:5.1.5'
     }
 }
